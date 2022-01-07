@@ -80,6 +80,21 @@ class TestUtils(unittest.TestCase):
             self.assertTrue(doujin.image_urls, msg="ValueError: ImageURLs")
             self.assertTrue(doujin.num_pages, msg="ValueError: NumberOfPages")
 
+    def test_popular_year(self):
+        print("Sort.Date")
+        print("---")
+        popular_3d = Utils.search_by_query(query="language:chinese", page=2, sort=Sort.Date)
+        popular_3d = list(popular_3d)
+        for i in range(10):
+            print(f"id-upload_date: {popular_3d[i].id} - {popular_3d[i].upload_date}")
+            
+        print("Sort.PopularYear")
+        print("---")
+        popular_3d = Utils.search_by_query(query="language:chinese", page=2, sort=Sort.PopularYear)
+        popular_3d = list(popular_3d)
+        for i in range(10):
+            print(f"id-upload_date: {popular_3d[i].id} - {popular_3d[i].upload_date}")
+
     def test_export(self):
         # case 1 selects three options at random for populating options in export
         print(f"CASE 1: Exports '{self.tiny_evil.title(Format.Pretty)}' as {self.tiny_evil_file} to '{Path().cwd()}'")
